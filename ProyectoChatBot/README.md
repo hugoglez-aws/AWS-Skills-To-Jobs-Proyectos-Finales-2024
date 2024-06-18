@@ -2,9 +2,9 @@
 
 # Autores y Centro de Estudios:
 
-		•   Desarrollador: Serhiy Holovasin Suslov
+	•   Desarrollador: Serhiy Holovasin Suslov
         •   Tutora Docente: María Jesús Sánchez García
-		•   Centro de Estudios: IES Infanta Elena (Galapagar-Madrid)
+	•   Centro de Estudios: IES Infanta Elena (Galapagar-Madrid)
         
 
 # Descripción del Proyecto
@@ -25,22 +25,23 @@ La transformación digital en educación necesita adaptarse a las expectativas d
 
 # Diagrama de interconexión de los servicios AWS
 
+
 ![alt text](image.png)
 
 
 # Servicios AWS Empleados
 
 	•	Amazon S3
-    •   Amazon CloudFront
+    	•	Amazon CloudFront
 	•	AWS IAM
-    •   AWS Certificate Manager 
-    •   Amazon ECR 
-    •   ECS
+    	•	AWS Certificate Manager 
+    	•	Amazon ECR 
+    	•	ECS
 	•	AWS Fargate
 	•	Elastic Load Balancing
 	•	Grupos de seguridad
 	•	Target group
-    •   Autoscaling
+    	•   	Autoscaling
 
 
 # Documentación de la Arquitectura
@@ -72,7 +73,7 @@ Además, al momento de desarrollar este proyecto teníamos habilitado el laborat
 En conclusión, la implementación del chatbot educativo en AWS proporciona una solución eficaz y escalable que mejora la comunicación dentro de los centros educativos. Con un diseño considerado y la integración de tecnologías avanzadas, el sistema no solo cumple con los requisitos funcionales, sino que también establece un alto estándar de interacción y seguridad de datos.
 
 
-# ¿CÓMO VIAJAN LAS PREGUNTAS Y RESPUESTAS A TRAVÉS DE NUESTRA INFRAESTRUCTURA DE AWS?
+# ¿Cómo viajan las preguntas y respuestas a través de nuestra infrastructura de AWS?
 
 Cuando un usuario entra en la página web del centro educativo, su solicitud es atendida por Amazon CloudFront, que sirve el contenido estático alojado en un Amazon S3 bucket. Este contenido incluye los archivos HTML, CSS y JavaScript necesarios para interpretar la página y habilitar la funcionalidad del chatbot. A medida que el usuario interactúa con el chatbot ingresando preguntas, el frontend captura estas interacciones mediante JavaScript.
 
@@ -90,7 +91,7 @@ Finalmente, las respuestas generadas, ya sea a través de OpenAI o recuperadas d
 
 Al culminar el desarrollo de nuestro ChatBot en AWS, hemos alcanzado un momento decisivo para evaluar cómo se han cumplido los objetivos iniciales del proyecto. En esta fase vamos a identificar tanto los logros obtenidos como las áreas que requieren mejoras adicionales, teniendo en cuenta las restricciones de tiempo y los recursos limitados del entorno de laboratorio gratuito.
 
-    Evaluación de Objetivos:
+Evaluación de Objetivos:
 
 1. Objetivo de Mejorar la Comunicación en Centros Educativos: 
 
