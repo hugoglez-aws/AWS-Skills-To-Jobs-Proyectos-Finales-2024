@@ -41,8 +41,8 @@ La transformación digital en educación necesita adaptarse a las expectativas d
 	Elastic Load Balancing
 	Grupos de seguridad
 	Target group
-    	Autoscaling
-     	RDS
+	Autoscaling
+	RDS
 
 
 # Documentación de la Arquitectura
