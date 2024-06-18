@@ -32,16 +32,17 @@ La transformación digital en educación necesita adaptarse a las expectativas d
 # Servicios AWS Empleados
 
 	Amazon S3
-    	Amazon CloudFront
-	AWS IAM
-    	AWS Certificate Manager 
-    	Amazon ECR 
-    	ECS
+	Amazon CloudFront
+ 	AWS IAM
+	AWS Certificate Manager 
+	Amazon ECR 
+	ECS
 	AWS Fargate
 	Elastic Load Balancing
 	Grupos de seguridad
 	Target group
     	Autoscaling
+     	RDS
 
 
 # Documentación de la Arquitectura
