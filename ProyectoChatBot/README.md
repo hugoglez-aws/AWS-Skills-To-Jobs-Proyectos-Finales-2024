@@ -2,9 +2,9 @@
 
 # Autores y Centro de Estudios:
 
-	•   Desarrollador: Serhiy Holovasin Suslov
-        •   Tutora Docente: María Jesús Sánchez García
-	•   Centro de Estudios: IES Infanta Elena (Galapagar-Madrid)
+	Desarrollador: Serhiy Holovasin Suslov
+	Tutora Docente: María Jesús Sánchez García
+ 	Centro de Estudios: IES Infanta Elena (Galapagar-Madrid)
         
 
 # Descripción del Proyecto
@@ -13,9 +13,9 @@ Este proyecto demuestra la implementación de un chatbot educativo desplegado en
 
 # Enlaces Importantes
 
-	•	AWS Academy Learner Lab: https://awsacademy.instructure.com/courses/77797
-	•	AWS Academy Cloud Foundations: https://awsacademy.instructure.com/courses/45984
-	•	Enlace del Proyecto: https://awsproject.es
+	AWS Academy Learner Lab: https://awsacademy.instructure.com/courses/77797
+	AWS Academy Cloud Foundations: https://awsacademy.instructure.com/courses/45984
+	Enlace del Proyecto: https://awsproject.es
 
 
 # Breve Reseña del Proyecto
@@ -31,17 +31,17 @@ La transformación digital en educación necesita adaptarse a las expectativas d
 
 # Servicios AWS Empleados
 
-	•	Amazon S3
-    	•	Amazon CloudFront
-	•	AWS IAM
-    	•	AWS Certificate Manager 
-    	•	Amazon ECR 
-    	•	ECS
-	•	AWS Fargate
-	•	Elastic Load Balancing
-	•	Grupos de seguridad
-	•	Target group
-    	•   	Autoscaling
+	Amazon S3
+    	Amazon CloudFront
+	AWS IAM
+    	AWS Certificate Manager 
+    	Amazon ECR 
+    	ECS
+	AWS Fargate
+	Elastic Load Balancing
+	Grupos de seguridad
+	Target group
+    	Autoscaling
 
 
 # Documentación de la Arquitectura
