@@ -2,9 +2,9 @@
 
 # Autores y Centro de Estudios:
 
-		•   Desarrollador: Serhiy Holovasin Suslov
-        •   Tutora Docente: María Jesús Sánchez García
-		•   Centro de Estudios: IES Infanta Elena (Galapagar-Madrid)
+	Desarrollador: Serhiy Holovasin Suslov
+	Tutora Docente: María Jesús Sánchez García
+ 	Centro de Estudios: IES Infanta Elena (Galapagar-Madrid)
         
 
 # Descripción del Proyecto
@@ -19,7 +19,6 @@ Este proyecto demuestra la implementación de un chatbot educativo desplegado en
 	•	Enlace de la presentacion completa del proyecto: https://youtu.be/OX2-mOVbnts 
 
 
-
 # Breve Reseña del Proyecto
 
 La transformación digital en educación necesita adaptarse a las expectativas de las nuevas generaciones. Este proyecto crea un chatbot alojado en Amazon Web Services que utiliza la API de OpenAI para un procesamiento de lenguaje, mejorando la comunicación entre estudiantes y centros educativos. El uso de AWS asegura escalabilidad, seguridad y disponibilidad constante. Programado en Python con una interfaz en HTML, CSS y JavaScript, este chatbot facilita respuestas precisas a preguntas frecuentes, reduce cargas administrativas y mejora el acceso a la información educativa. Este proyecto demuestra que los chatbots pueden ser una herramienta valiosa y transformadora en la educación.
@@ -27,22 +26,24 @@ La transformación digital en educación necesita adaptarse a las expectativas d
 
 # Diagrama de interconexión de los servicios AWS
 
+
 ![alt text](image.png)
 
 
 # Servicios AWS Empleados
 
-	•	Amazon S3
-    •   Amazon CloudFront
-	•	AWS IAM
-    •   AWS Certificate Manager 
-    •   Amazon ECR 
-    •   ECS
-	•	AWS Fargate
-	•	Elastic Load Balancing
-	•	Grupos de seguridad
-	•	Target group
-    •   Autoscaling
+	Amazon S3
+	Amazon CloudFront
+ 	AWS IAM
+	AWS Certificate Manager 
+	Amazon ECR 
+	ECS
+	AWS Fargate
+	Elastic Load Balancing
+	Grupos de seguridad
+	Target group
+	Autoscaling
+	RDS
 
 
 # Documentación de la Arquitectura
@@ -74,7 +75,7 @@ Además, al momento de desarrollar este proyecto teníamos habilitado el laborat
 En conclusión, la implementación del chatbot educativo en AWS proporciona una solución eficaz y escalable que mejora la comunicación dentro de los centros educativos. Con un diseño considerado y la integración de tecnologías avanzadas, el sistema no solo cumple con los requisitos funcionales, sino que también establece un alto estándar de interacción y seguridad de datos.
 
 
-# ¿CÓMO VIAJAN LAS PREGUNTAS Y RESPUESTAS A TRAVÉS DE NUESTRA INFRAESTRUCTURA DE AWS?
+# ¿Cómo viajan las preguntas y respuestas a través de nuestra infrastructura de AWS?
 
 Cuando un usuario entra en la página web del centro educativo, su solicitud es atendida por Amazon CloudFront, que sirve el contenido estático alojado en un Amazon S3 bucket. Este contenido incluye los archivos HTML, CSS y JavaScript necesarios para interpretar la página y habilitar la funcionalidad del chatbot. A medida que el usuario interactúa con el chatbot ingresando preguntas, el frontend captura estas interacciones mediante JavaScript.
 
@@ -92,7 +93,7 @@ Finalmente, las respuestas generadas, ya sea a través de OpenAI o recuperadas d
 
 Al culminar el desarrollo de nuestro ChatBot en AWS, hemos alcanzado un momento decisivo para evaluar cómo se han cumplido los objetivos iniciales del proyecto. En esta fase vamos a identificar tanto los logros obtenidos como las áreas que requieren mejoras adicionales, teniendo en cuenta las restricciones de tiempo y los recursos limitados del entorno de laboratorio gratuito.
 
-    Evaluación de Objetivos:
+Evaluación de Objetivos:
 
 1. Objetivo de Mejorar la Comunicación en Centros Educativos: 
 
@@ -119,4 +120,3 @@ facilitar la interacción dentro de los centros educativos. Aunque no hemos impl
 para futuras implementaciones. Hay que seguir desarrollando y mejorando el chatbot, ajustándolo para alcanzar el ideal de que comunicarse con un centro educativo sea tan fácil
 y accesible como chatear con un amigo. El apoyo continuo de la tecnología de OpenAI será de gran ayuda en este proceso de evolución, garantizando que el sistema no solo sea más
 inteligente, sino también más seguro y útil para todos los usuarios. Al final, la implementación de este proyecto no solo demuestra la viabilidad de la tecnología de chatbots en la educación, sino que también destaca el compromiso del centro educativo con la innovación y la mejora continua en el servicio a su comunidad.”
-
