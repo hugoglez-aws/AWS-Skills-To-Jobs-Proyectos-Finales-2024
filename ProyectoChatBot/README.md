@@ -16,6 +16,8 @@ Este proyecto demuestra la implementación de un chatbot educativo desplegado en
 	•	AWS Academy Learner Lab: https://awsacademy.instructure.com/courses/77797
 	•	AWS Academy Cloud Foundations: https://awsacademy.instructure.com/courses/45984
 	•	Enlace del Proyecto: https://awsproject.es
+	•	Enlace de la presentacion completa del proyecto: https://youtu.be/OX2-mOVbnts 
+
 
 
 # Breve Reseña del Proyecto
@@ -117,3 +119,4 @@ facilitar la interacción dentro de los centros educativos. Aunque no hemos impl
 para futuras implementaciones. Hay que seguir desarrollando y mejorando el chatbot, ajustándolo para alcanzar el ideal de que comunicarse con un centro educativo sea tan fácil
 y accesible como chatear con un amigo. El apoyo continuo de la tecnología de OpenAI será de gran ayuda en este proceso de evolución, garantizando que el sistema no solo sea más
 inteligente, sino también más seguro y útil para todos los usuarios. Al final, la implementación de este proyecto no solo demuestra la viabilidad de la tecnología de chatbots en la educación, sino que también destaca el compromiso del centro educativo con la innovación y la mejora continua en el servicio a su comunidad.”
+
