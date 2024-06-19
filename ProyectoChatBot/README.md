@@ -120,3 +120,16 @@ facilitar la interacción dentro de los centros educativos. Aunque no hemos impl
 para futuras implementaciones. Hay que seguir desarrollando y mejorando el chatbot, ajustándolo para alcanzar el ideal de que comunicarse con un centro educativo sea tan fácil
 y accesible como chatear con un amigo. El apoyo continuo de la tecnología de OpenAI será de gran ayuda en este proceso de evolución, garantizando que el sistema no solo sea más
 inteligente, sino también más seguro y útil para todos los usuarios. Al final, la implementación de este proyecto no solo demuestra la viabilidad de la tecnología de chatbots en la educación, sino que también destaca el compromiso del centro educativo con la innovación y la mejora continua en el servicio a su comunidad.”
+
+
+# Nota informativa
+
+Estimados usuarios,
+
+Quiero informarles que, actualmente, la clave de API de OpenAI utilizada por mi chatbot educativo ha sido desactivada temporalmente. Por lo tanto, no será posible realizar pruebas del chatbot de forma online en este momento.
+Si desean realizar pruebas o necesitan acceso temporal para demostraciones, por favor, pónganse en contacto conmigo. Estaré encantado de activar nuevamente la clave de API para facilitar sus pruebas.
+Estoy a su disposición para cualquier consulta adicional.
+
+Atentamente,
+Serhiy Holovasin
+serhiy.holovasin@educa.madrid.org
