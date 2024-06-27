@@ -1,0 +1,111 @@
+<div class="container" style="min-height: 100vh;">
+    <div class="row justify-content-center my-3">
+        <div class="col-auto">
+            <h1 class="text-primary shadow p-3 bg-body-tertiary rounded">Tu Horario</h1>
+        </div>
+    </div>
+    <div class="row mb-3 g-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </span>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="activityName" placeholder="Buscar actividades..."
+                        [(ngModel)]="searchTerm" (input)="applyFilter()">
+                    <label for="activityName">Buscar</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <div class="form-floating">
+                <input type="date" class="form-control" id="startDate" placeholder="Fecha de inicio"
+                    [(ngModel)]="startDate" (input)="applyFilter()">
+                <label for="startDate">Fecha de inicio</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <div class="form-floating">
+                <input type="date" class="form-control" id="endDate" placeholder="Fecha de fin" [(ngModel)]="endDate"
+                    (input)="applyFilter()">
+                <label for="endDate">Fecha de fin</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <div class="form-floating">
+                <select class="form-select" id="typeSelect" [(ngModel)]="selectedType" (change)="applyFilter()">
+                    <option value="">Todos los tipos</option>
+                    <option *ngFor="let type of typeList" [value]="type.Name">{{ type.Name }}</option>
+                </select>
+                <label for="typeSelect">Tipo de Actividad</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <div class="form-floating">
+                <select class="form-select" id="daySelect" [(ngModel)]="selectedDay" (change)="applyFilter()">
+                    <option value="">Todos los días</option>
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miércoles">Miércoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
+                    <option value="Sábado">Sábado</option>
+                    <option value="Domingo">Domingo</option>
+                </select>
+                <label for="daySelect">Día de la Semana</label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-3">
+            <button class="btn btn-warning w-100" (click)="clearFilters()">Limpiar filtros</button>
+        </div>
+        <div class="col-12 col-md-3">
+            <button class="btn btn-primary w-100" (click)="setTodayAndNextWeek()">De hoy a siete dias</button>
+        </div>
+    </div>
+
+    <div class="text-center" *ngIf="loading == true; else schedules">
+        <div class="spinner-border text-center" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h1 class="text-primary">Cargando Actividades</h1>
+    </div>
+    <ng-template #schedules>
+        <div class="row">
+            <div *ngIf="filteredSchedules.length === 0" class="col-12 text-center">
+                <app-no-activity-found></app-no-activity-found>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 p-2" *ngFor="let userSchedule of filteredSchedules">
+                <app-user-schedule-card [userSchedule]="userSchedule"
+                    (userScehduleClicked)="onUserScehduleClicked($event)"></app-user-schedule-card>
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-warning-subtle">
+                <img src={{plenaInlcusionLogo}} class="rounded me-2" alt="..." style="height: 20px;">
+                <strong class="me-auto">Plena Inclusión Aragón</strong>
+                <small>Justo ahora</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Estas son las actividades que tienes pendientes de aqui a siete dias, para ver todas pulsa en el botón
+                "Limpiar filtros".
+                <hr>
+                Si pulsas en una podrás dejar tu nota y comentario!!!
+                <hr>
+                Puedes buscar una actividad en concreto utilizando los filtros
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-user-schedule-modal [userSchedule]="selectedUserSchedule"
+    (scheduleChange)="handleScheduleChange()"></app-user-schedule-modal>

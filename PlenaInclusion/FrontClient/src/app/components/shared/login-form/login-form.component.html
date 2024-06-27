@@ -1,0 +1,64 @@
+<form (ngSubmit)="submitForm()" enctype="multipart/form-data" class="needs-validation" novalidate>
+    <div class="row gy-3">
+        <div class="col-12">
+            <h1 class="text-primary">Inicia Sesión</h1>
+        </div>
+        <div class="col-12">
+            <div class="input-group">
+                <span class="input-group-text" [ngClass]="{'valid-email': isValidEmail}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.552L0 4.697zM6.761 8.83 0 12.803A2 2 0 0 0 2 14h12a2 2 0 0 0 2-1.197l-6.761-3.973L8 9.586l-1.239-.756zM10.197 8.25 16 11.803V4.697l-5.803 3.553z" />
+                    </svg>
+                </span>
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingEmailInput" name="Email"
+                        [(ngModel)]="user.Email" placeholder="" required (ngModelChange)="onEmailChange($event)">
+                    <label for="floatingEmailInput">Correo Electrónico</label>
+                    <div class="invalid-feedback">
+                        Por favor ingrese un correo electrónico válido.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="input-group">
+                <span class="input-group-text" [ngClass]="{'valid-input': isPasswordValid}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-key-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                    </svg>
+                </span>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPasswordInput" name="Pass"
+                        [(ngModel)]="user.Pass" placeholder="" required minlength="5" maxlength="20"
+                        (input)="isValidPassword(user.Pass)">
+                    <label for="floatingPasswordInput">Contraseña</label>
+                    <div class="invalid-feedback">
+                        Por favor ingrese una contraseña válida.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <button *ngIf="isValidEmail && isPasswordValid" type="submit" class="btn btn-primary">
+                Iniciar Sesión
+            </button>
+            <button *ngIf="!isValidEmail || !isPasswordValid" id="tooltipButton" type="button" class="btn btn-primary"
+                data-bs-toggle="tooltip" data-bs-placement="right" title="Rellena los Campos">
+                Iniciar Sesión
+            </button>
+            <div *ngIf="loginError" class="alert alert-danger mt-2">{{ loginError }}</div>
+        </div>
+        <div class="col-12">
+            <p class="text-primary" id="registerTooltip">¿No tienes
+                cuenta? Contacta con un monitor para que te ayude a crear una.</p>
+            <p class="text-primary" id="registerTooltip">Tambien puedes iniciar Sesión con tu cuenta de Google</p>
+        </div>
+        <div class="col-auto">
+            <app-google-auth-btn></app-google-auth-btn>
+        </div>
+    </div>
+</form>

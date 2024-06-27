@@ -1,0 +1,16 @@
+<div class="card bg-warning-subtle shadow-lg rounded h-100" (click)="onCardClick()">
+    <div class="card-header text-center">
+        <h4 class="mb-0">{{user?.Rol}}</h4>
+    </div>
+    <div class="card-body text-center">
+        <img [src]="user?.Photo" class="card-img-top rounded-circle mb-3"
+            style="width: 100px; height: 100px; object-fit: cover;" alt="Foto de perfil">
+        <h5 class="card-title mb-2">{{ user?.Name }} {{ user?.Surname_1 }}
+        </h5>
+        <p class="card-text mb-2"><cite>{{user?.Email}}</cite></p>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+
+        <button type="button" class="btn btn-outline-warning w-100">Ver Perfil</button>
+    </div>
+</div>

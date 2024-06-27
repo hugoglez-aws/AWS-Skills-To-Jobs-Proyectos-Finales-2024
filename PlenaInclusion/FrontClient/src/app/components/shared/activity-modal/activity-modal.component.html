@@ -1,0 +1,120 @@
+<div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
+        <div class="modal-content bg-warning-subtle">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Actividad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="selectedActivity" class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <img [src]="selectedActivity.Photo || imagenMostrada"
+                                class="img-fluid rounded activity-image" alt="Activity Image">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label for="Photo" class="input-group-text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-image" viewBox="0 0 16 16">
+                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                                    <path
+                                        d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z" />
+                                </svg>
+                            </label>
+                            <input class="form-control" type="file" id="Photo" name="Photo"
+                                (change)="onFileSelected($event)" accept="image/*">
+                        </div>
+                        <div *ngIf="!archivoInsertadoValid && archivoInsertado" class="text-center">
+                            Por favor seleccione una foto válida (formato jpg o png, máximo 5 MB).
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="nameInput" placeholder="Nombre"
+                                [(ngModel)]="selectedActivity.Name">
+                            <label for="nameInput">Nombre</label>
+                        </div>
+                        <div *ngIf="selectedActivity.Name == ''" class="text-danger">
+                            El campo Nombre es obligatorio y debe tener un máximo de 70 caracteres.
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="descriptionInput" placeholder="Descripción"
+                                [(ngModel)]="selectedActivity.Description"
+                                style="max-height: 300px; height: 100px;"></textarea>
+                            <label for="descriptionInput">Descripción</label>
+                        </div>
+                        <div *ngIf="selectedActivity.Description == ''" class="text-danger">
+                            El campo Descripcion es obligatorio y debe tener un máximo de 70 caracteres.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal">Borrar Actividad</button>
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"
+                    (click)="openConfirmationModal('update')">Actualizar</button>
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"
+                    (click)="activitiesChange.emit();">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="staticBackdropLabel">Confirmación de Borrado</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro que quieres borrar la actividad?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="deleteActivity()"
+                    data-bs-toggle="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successDelete" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Aviso</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Actividad borrada correctamente!!!
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="errorModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Aviso</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Esta actividad se encuentra asignada a un horario, no se ha podido borrar.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-confirmation-modal [titulo]="'Aviso'" [mensaje]="'¿Estás seguro de que desea realizar esta acción?'"
+    (acepted)="updateActivity()"></app-confirmation-modal>

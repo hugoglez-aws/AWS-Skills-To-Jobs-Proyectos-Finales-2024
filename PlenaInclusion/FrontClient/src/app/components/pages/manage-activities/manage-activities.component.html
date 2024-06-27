@@ -1,0 +1,86 @@
+<div class="container" style="min-height: 100vh;">
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-auto">
+            <h1 class="text-primary shadow p-3 bg-body-tertiary rounded">Lista de Actividades</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-10">
+            <button type="button" class="btn btn-primary mb-3" (click)="addActivityModal()">Añadir Actividad</button>
+
+            <div class="row mb-3 g-2">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            </svg>
+                        </span>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="activityName"
+                                placeholder="Buscar actividades..." [(ngModel)]="searchTerm" (input)="applyFilter()">
+                            <label for="activityName">Buscar</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" *ngIf="loading == true; else activityBlock">
+                <div class="spinner-border text-center" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h1 class="text-primary">Cargando Actividades</h1>
+            </div>
+            <ng-template #activityBlock>
+                <div class="table-responsive rounded rounded-4 shadow"
+                    *ngIf="filteredActivities && filteredActivities.length > 0 && loading == false; else noActivities">
+                    <table class="table table-hover table-striped rounded m-0">
+                        <thead class="table-primary">
+                            <tr>
+                                <th scope="col" class="text-center">Foto</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let activity of filteredActivities" (click)="onActivityClick(activity)">
+                                <td class="align-middle text-center">
+                                    <img [src]="activity.Photo" alt="Activity Photo" class="img-fluid rounded"
+                                        style="max-height: 60px;">
+                                </td>
+                                <td class="align-middle">{{ activity.Name }}</td>
+                                <td class="align-middle">{{ activity.Description }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ng-template #noActivities>
+                    <div class="row justify-content-center text-center">
+                        <app-no-activity-found></app-no-activity-found>
+                    </div>
+                </ng-template>
+            </ng-template>
+
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-warning-subtle">
+                <img src={{plenaInlcusionLogo}} class="rounded me-2" alt="..." style="height: 20px;">
+                <strong class="me-auto">Plena Inclusión Aragón</strong>
+                <small>Justo ahora</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                En esta página puedes gestionar las actividades dentro de la aplicación.
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-activity-modal [selectedActivity]="selectedActivity" (activitiesChange)="handleActivities()"></app-activity-modal>
+
+<app-add-activity (activityCreated)="handleActivities()"></app-add-activity>

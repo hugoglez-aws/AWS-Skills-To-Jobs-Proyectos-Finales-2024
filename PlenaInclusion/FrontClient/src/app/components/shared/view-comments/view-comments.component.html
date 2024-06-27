@@ -1,0 +1,38 @@
+<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="scheduleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content bg-success-subtle">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="scheduleModalLabel">Comentarios de la Actividad</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Foto de Perfil</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Comentario</th>
+                            <th scope="col">Nota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let userSchedule of userSchedules">
+                            <td>
+                                <img [src]="userSchedule.User.Photo" alt="Foto de perfil"
+                                    class="img-fluid rounded-circle" style="width: 50px; height: 50px;">
+                            </td>
+                            <td>{{ userSchedule.User.Name }} {{ userSchedule.User.Surname_1 }} {{
+                                userSchedule.User.Surname_2 }}
+                            </td>
+                            <td>{{ userSchedule.Comment }}</td>
+                            <td>{{ userSchedule.Rating }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
