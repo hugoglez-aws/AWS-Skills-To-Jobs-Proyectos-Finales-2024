@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  selector:
+    matchLabels:
+      app: api
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: api
+        tier: frontend
+    spec:
+      containers:
+      - name: api-net
+        image:  ivansegura/backend-api:c9
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:084917714804:certificate/6cb17736-cc35-4d7a-8930-e395839288d7
+    # Only run TLS on the port named "https" below.
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+spec:
+  selector:
+    app: api
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  - name: https
+    port: 443
+    targetPort: 80
+  type: LoadBalancer
