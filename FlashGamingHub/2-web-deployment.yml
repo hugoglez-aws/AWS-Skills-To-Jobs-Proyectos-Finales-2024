@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotnetapp
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:084917714804:certificate/0852f766-b5ed-4346-8f86-048e5ef1dd9f
+    # Only run TLS on the port named "https" below.
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+spec:
+  selector:
+    app: dotnetapp
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  - name: https
+    port: 443
+    targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: dotnetapp
+  labels:
+    app: dotnetapp
+spec:
+  selector:
+    matchLabels:
+      app: dotnetapp
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: dotnetapp
+        tier: frontend
+    spec:
+      containers:
+      - name: docker-compose-dotnet-core-and-mssql-app
+        image: ivansegura/frontend:c9
+        ports:
+        - containerPort: 80
