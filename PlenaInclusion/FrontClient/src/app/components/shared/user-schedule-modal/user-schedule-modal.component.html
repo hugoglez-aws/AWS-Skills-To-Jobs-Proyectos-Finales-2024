@@ -1,0 +1,30 @@
+<div class="modal fade" id="userScheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content bg-warning-subtle">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Comenta la Actividad</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="userSchedule">
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="rating" [(ngModel)]="userSchedule.Rating"
+                            placeholder="Rating" min="0" max="10">
+                        <label for="rating">Nota</label>
+                    </div>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="comment"
+                            style="height: 100px" [(ngModel)]="userSchedule.Comment"></textarea>
+                        <label for="comment">Comentario</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveChanges()">Guardar
+                    cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

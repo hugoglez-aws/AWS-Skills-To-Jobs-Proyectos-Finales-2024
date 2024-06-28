@@ -1,0 +1,18 @@
+
+.container {
+    margin-top: 20px;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.img-fluid {
+    height: auto;
+    max-width: 100%;
+}
+
+tr {
+    transition: transform 0.3s;
+    cursor: pointer;
+}

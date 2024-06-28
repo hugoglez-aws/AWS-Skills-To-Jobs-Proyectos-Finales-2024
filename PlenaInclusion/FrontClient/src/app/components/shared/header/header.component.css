@@ -1,0 +1,21 @@
+.custom-navbar-height {
+    height: 80px;
+}
+
+.custom-navbar-height .navbar-brand,
+.custom-navbar-height .navbar-nav .nav-link,
+.custom-navbar-height .btn {
+    line-height: 40px;
+}
+
+.offcanvas-body .list-group-item {
+    cursor: pointer;
+    border: none;
+}
+
+
+
+.offcanvas-body .list-group-item-action {
+    padding: 15px 20px;
+    font-size: 16px;
+}

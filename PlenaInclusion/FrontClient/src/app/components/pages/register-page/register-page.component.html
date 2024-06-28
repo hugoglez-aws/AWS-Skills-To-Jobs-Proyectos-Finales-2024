@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row justify-content-center my-3">
+        <div class="col-auto">
+            <h1 class="text-primary shadow p-3 bg-body-tertiary rounded">Nuevo Registro</h1>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-10 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+            <app-form></app-form>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-warning-subtle">
+                <img src={{plenaInlcusionLogo}} class="rounded me-2" alt="..." style="height: 20px;">
+                <strong class="me-auto">Plena Inclusión Aragón</strong>
+                <small>Justo ahora</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                En esta página puedes registrar nuevos usuarios en la aplicación, asegurate de rellenar todos los campos.
+            </div>
+        </div>
+    </div>
+</div>

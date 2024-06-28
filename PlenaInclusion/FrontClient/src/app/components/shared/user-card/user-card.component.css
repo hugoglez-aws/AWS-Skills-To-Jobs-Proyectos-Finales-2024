@@ -1,0 +1,10 @@
+.card {
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}

@@ -1,0 +1,149 @@
+<div class="modal fade" id="addActivityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-warning-subtle">
+            <div class="modal-header">
+                <h5 class="modal-title">Crear Actividad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="submitForm()" enctype="multipart/form-data" class="needs-validation p-3 bg-secondary"
+                    novalidate>
+                    <div class="row justify-content-center pb-2">
+                        <div *ngIf="imagenMostrada"
+                            class="col-auto vh-25 d-flex justify-content-center align-items-center">
+                            <img [src]="imagenMostrada" alt="Imagen seleccionada" class="img-fluid rounded shadow-lg"
+                                style="max-height: 150px;">
+                        </div>
+                        <div *ngIf="!imagenMostrada"
+                            class="col-auto vh-25 d-flex justify-content-center align-items-center">
+                            <img [src]="defaultProfileImageUrl" alt="Imagen predeterminada"
+                                class="img-fluid rounded shadow-lg" style="max-height: 150px;">
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label for="Photo" class="input-group-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-image" viewBox="0 0 16 16">
+                                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                                        <path
+                                            d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z" />
+                                    </svg>
+                                </label>
+                                <input class="form-control" type="file" id="Photo" name="Photo"
+                                    (change)="onFileSelected($event)" accept="image/*">
+                            </div>
+                            <div *ngIf="!archivoInsertado" class="text-center">
+                                Por favor seleccione una foto.
+                            </div>
+                            <div *ngIf="!archivoInsertadoValid && archivoInsertado" class="text-center">
+                                Por favor seleccione una foto válida (formato jpg o png, máximo 5 MB).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text" [ngClass]="{'valid-input': isFieldValid(activity.Name)}">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-alphabet-uppercase" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1.226 10.88H0l2.056-6.26h1.42l2.047 6.26h-1.29l-.48-1.61H1.707l-.48 1.61ZM2.76 5.818h-.054l-.75 2.532H3.51zm3.217 5.062V4.62h2.56c1.09 0 1.808.582 1.808 1.54 0 .762-.444 1.22-1.05 1.372v.055c.736.074 1.365.587 1.365 1.528 0 1.119-.89 1.766-2.133 1.766zM7.18 5.55v1.675h.8c.812 0 1.171-.308 1.171-.853 0-.51-.328-.822-.898-.822zm0 2.537V9.95h.903c.951 0 1.342-.312 1.342-.909 0-.591-.382-.954-1.095-.954zm5.089-.711v.775c0 1.156.49 1.803 1.347 1.803.705 0 1.163-.454 1.212-1.096H16v.12C15.942 10.173 14.95 11 13.607 11c-1.648 0-2.573-1.073-2.573-2.849v-.78c0-1.775.934-2.871 2.573-2.871 1.347 0 2.34.849 2.393 2.087v.115h-1.172c-.05-.665-.516-1.156-1.212-1.156-.849 0-1.347.67-1.347 1.83" />
+                                    </svg>
+                                </span>
+                                <div class="form-floating col-5">
+                                    <input type="text" class="form-control" id="ActivityName" name="ActivityName"
+                                        [(ngModel)]="activity.Name" placeholder="" required maxlength="40"
+                                        #nombreCampo="ngModel">
+                                    <label for="Nombre">Nombre de la Actividad</label>
+                                </div>
+                            </div>
+                            <div *ngIf="nombreCampo.invalid && nombreCampo.touched" class="text-danger">
+                                El campo Nombre de la Actividad es obligatorio y debe tener un máximo de 40 caracteres.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-4">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text"
+                                    [ngClass]="{'valid-input': isFieldValid(activity.Description)}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-book" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
+                                    </svg>
+                                </span>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="floatingDescriptionInput" name="Description"
+                                        [(ngModel)]="activity.Description" placeholder="" required maxlength="70"
+                                        style="height: 100px" #descripcionCampo="ngModel"></textarea>
+                                    <label for="floatingDescriptionInput">Descripción</label>
+                                </div>
+                            </div>
+                            <div *ngIf="descripcionCampo.invalid && descripcionCampo.touched" class="text-danger">
+                                El campo Descripción es obligatorio y debe tener un máximo de 70 caracteres.
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+
+                <button *ngIf="isAllFieldsValid(); else elseBlock" type="button" class="btn btn-outline-primary"
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Enviar!
+                </button>
+                <ng-template #elseBlock>
+                    <button type="button" class="btn btn-outline-warning">
+                        Rellena los Campos
+                    </button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="staticBackdropLabel">Confirmación de la Solicitud</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro de crear la actividad?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="submitForm()"
+                    data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Aviso</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Acción realizada correctamente!!!
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>

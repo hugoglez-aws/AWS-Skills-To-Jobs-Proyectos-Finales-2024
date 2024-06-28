@@ -1,0 +1,246 @@
+<div class="modal fade" id="addScheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="modal-content bg-warning-subtle">
+            <div class="modal-header">
+                <h5 class="modal-title">Crear Horario de Actividad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" class="needs-validation p-3 bg-secondary" novalidate>
+                    <div class="accordion" id="accordionActivities">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseAllActivities" aria-expanded="true"
+                                    aria-controls="collapseAllActivities">
+                                    Selecciona la Actividad
+                                </button>
+                            </h2>
+                            <div id="collapseAllActivities" class="accordion-collapse collapse show"
+                                aria-labelledby="headingAllActivities" data-bs-parent="#accordionActivities">
+                                <div class="accordion-body bg-warning-subtle">
+                                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                                        <div class="col" *ngFor="let activity of activities"
+                                            (click)="selectActivity(activity)">
+                                            <div class="card h-100 d-flex flex-column shadow-lg bg-body-tertiary rounded"
+                                                [ngClass]="{'selected': activity.ID_activity === selectedActivityID}">
+                                                <img src="{{ activity.Photo }}" class="card-img-top img-fluid" alt="..."
+                                                    style="object-fit: cover; height: 200px;">
+                                                <div class="card-body d-flex flex-column bg-success-subtle">
+                                                    <h5 class="card-title">{{ activity.Name }}</h5>
+                                                    <p class="card-text">{{ activity.Description }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row my-4">
+                        <div class="col-4">
+
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingCampaign" [(ngModel)]="schedule.ID_Campaign"
+                                    name="campaign" required>
+                                    <option *ngFor="let campaign of campaigns" [value]="campaign.ID_Campaign">{{
+                                        campaign.Name
+                                        }}</option>
+                                </select>
+                                <label for="floatingCampaign">Seleccionar Campaña</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingType" [(ngModel)]="schedule.ID_Type" name="type"
+                                    required>
+                                    <option *ngFor="let type of types" [value]="type.ID_type">{{ type.Name }}</option>
+                                </select>
+                                <label for="floatingType">Seleccionar Tipo</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingFrequency" [(ngModel)]="schedule.Frequency"
+                                    name="frequency" required>
+                                    <option value="Puntual">Puntual</option>
+                                    <option value="Semanal">Semanal</option>
+                                </select>
+                                <label for="floatingFrequency">Frecuencia</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="input-group">
+                                <span class="input-group-text bg-success-subtle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-house-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 3.293l-6 6V14a1 1 0 0 0 1 1h4v-4h2v4h4a1 1 0 0 0 1-1V9.293l-6-6zM7.5 1.207l-7 7A.5.5 0 0 0 1 9h2v6h10V9h2a.5.5 0 0 0 .5-.707l-7-7a.5.5 0 0 0-.707 0z" />
+                                    </svg>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingAddressInput" name="Address"
+                                        [(ngModel)]="schedule.Address" placeholder="Dirección" required maxlength="50"
+                                        (input)="onAddressInputChange(schedule.Address)">
+                                    <label for="floatingAddressInput">Dirección</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="input-group">
+                                <span class="input-group-text bg-success-subtle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-calendar-date" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1.5 1a.5.5 0 0 1 .5.5V6h3V5.5a.5.5 0 0 1 1 0V6h3V5.5a.5.5 0 0 1 1 0V6h3V5.5a.5.5 0 0 1 1 0V6h.5A.5.5 0 0 1 16 6.5v2.5h-1V7H1v2H0V6.5a.5.5 0 0 1 .5-.5H1.5zM1 12v1h14v-1H1z" />
+                                    </svg>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" id="floatingStartDateInput" name="StartDate"
+                                        [(ngModel)]="schedule.StartDate" placeholder="" required
+                                        (change)="onStartDateChange()">
+
+                                    <label for="floatingStartDateInput">Fecha de Inicio</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" *ngIf="schedule.Frequency !== 'Puntual'">
+                            <div class="input-group">
+                                <span class="input-group-text bg-success-subtle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-calendar-date" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1.5 1a.5.5 0 0 1 .5.5V6h3V5.5a.5.5 0 0 1 1 0V6h3V5.5a.5.5 0 0 1 1 0V6h3V5.5a.5.5 0 0 1 1 0V6h.5A.5.5 0 0 1 16 6.5v2.5h-1V7H1v2H0V6.5a.5.5 0 0 1 .5-.5H1.5zM1 12v1h14v-1H1z" />
+                                    </svg>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" id="floatingFinishDateInput"
+                                        name="FinishDate" [(ngModel)]="schedule.FinishDate" placeholder="" required>
+                                    <label for="floatingFinishDateInput">Fecha de Finalización</label>
+                                </div>
+                            </div>
+                            <div *ngIf="!areDatesValid()" class="text-danger">
+                                La fecha de inicio debe ser anterior a la fecha de finalización.
+                            </div>
+                        </div>
+                        <div class="row my-4">
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-success-subtle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 1a7 7 0 0 1 7 7 7 7 0 0 1-7 7 7 7 0 0 1-7-7 7 7 0 0 1 7-7zm-.5 11.5a.5.5 0 0 0 .5-.5V8H9a.5.5 0 0 0 0-1H7a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5z" />
+                                        </svg>
+                                    </span>
+                                    <div class="form-floating">
+                                        <input type="time" class="form-control" id="floatingStartHour" name="StartHour"
+                                            [(ngModel)]="schedule.StartHour" placeholder="" required
+                                            (change)="validateHours()">
+
+                                        <label for="floatingStartHour">Hora de Inicio</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-success-subtle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 1a7 7 0 0 1 7 7 7 7 0 0 1-7 7 7 7 0 0 1-7-7 7 7 0 0 1 7-7zm-.5 11.5a.5.5 0 0 0 .5-.5V8H9a.5.5 0 0 0 0-1H7a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5z" />
+                                        </svg>
+                                    </span>
+                                    <div class="form-floating">
+                                        <input type="time" class="form-control" id="floatingFinishHour"
+                                            name="FinishHour" [(ngModel)]="schedule.FinishHour" placeholder="" required
+                                            (change)="validateHours()">
+                                        <label for="floatingFinishHour">Hora de Finalización</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Campo de Capacidad -->
+                        <div class="col-lg-4">
+                            <div class="input-group">
+                                <span class="input-group-text bg-success-subtle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-people" viewBox="0 0 16 16">
+                                        <path
+                                            d="M7.5 7.5A1.5 1.5 0 1 0 6 9a1.5 1.5 0 0 0 1.5-1.5zm1.5 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM1 9a5 5 0 0 1 10 0v4H1V9z" />
+                                        <path fill-rule="evenodd"
+                                            d="M0 4a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm12-1a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3z" />
+                                    </svg>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="floatingCapacity" name="Capacity"
+                                        [(ngModel)]="schedule.Capacity" placeholder="" min="0" max="100">
+                                    <label for="floatingCapacity">Capacidad</label>
+                                </div>
+                            </div>
+                            <div *ngIf="schedule.Capacity < 0 || schedule.Capacity > 100" class="text-danger">
+                                La capacidad debe estar entre 0 y 100.
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"
+                    (click)="scheduleCreated.emit();">
+                    Cerrar
+                </button>
+                <button *ngIf="isFormValid()" type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"
+                    data-bs-toggle="modal" data-bs-target="#confirmationCreation">
+                    Crear!
+                </button>
+                <button *ngIf="!isFormValid()" type="button" class="btn btn-outline-warning">
+                    Rellena los Campos restantes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmationCreation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="staticBackdropLabel">Confirmación de la Solicitud</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de crear el el horario?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="submitForm()" data-bs-dismiss="modal"
+                    data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="advicePopUp" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Aviso</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{adviceTitle}}
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>

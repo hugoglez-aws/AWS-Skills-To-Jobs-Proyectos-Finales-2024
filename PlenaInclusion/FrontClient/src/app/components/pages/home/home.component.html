@@ -1,0 +1,156 @@
+<!-- google-auth-btn.component.html -->
+<div class="container my-5" style="min-height: 80vh;">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <app-profile-card></app-profile-card>
+        </div>
+        <div class="col-md-8">
+            <div class="accordion shadow-lg bg-body-tertiary rounded" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-warning-subtle" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Plena Inclusión Aragón ¿Qué es?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body bg-success-subtle">
+                            <strong>Inclusión Aragón</strong> es una iniciativa que promueve la integración y la
+                            igualdad de oportunidades para todas las personas en Aragón. Se centra en eliminar barreras
+                            y fomentar la participación activa en diversos ámbitos sociales, económicos y culturales.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-warning-subtle" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Más sobre esta aplicación
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body bg-success-subtle">
+                            Esta aplicación gestiona los horarios de eventos, talleres, clases y reuniones. Permite a
+                            los
+                            usuarios inscribirse, asistir y dejar valoraciones y comentarios sobre cada sesión. Está
+                            diseñada para ser accesible y fácil de usar para todos los usuarios.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-warning-subtle" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                            aria-controls="collapseThree">
+                            Soy Participante ¿Qué puedo hacer?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body bg-success-subtle">
+                            <strong>El manejo de la aplicación</strong> de Inclusión Aragón es sencillo e intuitivo.
+                            Aquí
+                            te mostramos los pasos básicos:
+                            <ol>
+                                <li>Revisa todas las actividades disponibles en el apartado <i>Ver Actividades</i>.
+                                    Puedes filtrar las actividades por nombre, tipo, fecha, etc.
+                                </li>
+                                <li>Al seleccionar una actividad, podrás ver los comentarios de otros participantes y
+                                    podrás apuntarte si te interesa.
+                                </li>
+                                <li>En el apartado <i>Mis Actividades</i>, podrás ver las actividades a las que estás
+                                    inscrito desde hoy hasta siete días adelante.
+                                </li>
+                                <li>Deja una puntuación y un breve comentario sobre la actividad antes o después de
+                                    asistir.
+                                </li>
+                            </ol>
+                            Esta aplicación te permitirá estar al tanto de todas las actividades que se desarrollan en
+                            nuestra asociación y te brindará la posibilidad de apuntarte a ellas. ¡No dudes en
+                            participar!
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item" *ngIf="role == 'Monitor' || role == 'Administrador'">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-warning-subtle" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                            aria-controls="collapseFour">
+                            Soy Monitor ¿Qué puedo hacer?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body bg-success-subtle">
+                            <strong>Ser Monitor</strong> en Inclusión Aragón implica más responsabilidad. Aquí te
+                            mostramos
+                            los pasos básicos:
+                            <ol>
+                                <li>Realiza las mismas acciones que un usuario normal.
+                                </li>
+                                <li>Visualiza una lista con todos los usuarios registrados en la aplicación.
+                                </li>
+                                <li>Al pulsar en cada carta de usuario, podrás ver más detalles sobre el usuario
+                                    seleccionado.
+                                </li>
+                                <li>Añade actividades al apartado de actividades.
+                                </li>
+                                <li>Elimina actividades del calendario en el apartado <i>Mis Actividades</i>.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item" *ngIf="role == 'Administrador'">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-warning-subtle" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
+                            aria-controls="collapseFive">
+                            Soy Administrador ¿Qué puedo hacer?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body bg-success-subtle">
+                            Como administrador, tienes el control total de la aplicación. Estas son tus ventajas:
+                            <ol>
+                                <li>Acceso a todas las funcionalidades de un usuario normal y un monitor.
+                                </li>
+                                <li>Acceso al <i>Panel de Control</i> con los siguientes apartados: gestión de
+                                    actividades, gestión de campañas y gestión de tipo de actividades.
+                                </li>
+                                <li>En el apartado <i>Gestión de Actividades</i>, verás una lista con todas las
+                                    actividades.
+                                    Podrás añadir, editar y borrar actividades, asegurándote de que no estén asignadas a
+                                    un horario previamente.
+                                </li>
+                                <li>En el apartado <i>Gestión de Campañas</i>, verás una lista con todas las campañas.
+                                    Podrás agregar, editar y borrar campañas.
+                                </li>
+                                <li>En el apartado <i>Gestión de Tipo de Actividad</i>, verás una lista con todos los
+                                    tipos
+                                    de actividades. Podrás agregar, editar y borrar tipos de actividades.
+                                </li>
+                            </ol>
+                            Tendrás la completa gestión de la aplicación.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-warning-subtle">
+                <img src={{plenaInlcusionLogo}} class="rounded me-2" alt="..." style="height: 20px;">
+                <strong class="me-auto">Plena Inclusión Aragón</strong>
+                <small>Justo ahora</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Recuerda cerrar sesión antes de irte.
+                <hr>
+                Aquí puedes informarte sobre como usar la aplicación.
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,30 @@
+<div class="card h-100 shadow p-3 mb-5 bg-warning-subtle rounded" (click)="onCardClick()">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title">{{ schedule?.Activity?.Name }}</h5>
+
+        <span *ngIf="isUserRegistered" class="badge bg-success">¡Ya estás apuntado!</span>
+    </div>
+    <div class="image-container">
+        <img [src]="schedule?.Activity?.Photo" class="card-img-top" alt="Activity Photo">
+    </div>
+    <div class="card-body">
+        <h5 class="mb-0">{{schedule?.Campaign?.Name}}</h5>
+
+        <p class="card-text">{{ schedule?.Activity?.Description }}</p>
+        <div *ngIf="schedule?.Frequency == 'Puntual'">
+            <p class="card-text"><strong>Realización:</strong> {{ schedule?.DayOfWeek }}, {{ schedule?.StartDate | date:
+                'longDate' }}</p>
+        </div>
+        <div *ngIf="schedule?.Frequency == 'Semanal'">
+            <p class="card-text"><strong>Inicio:</strong> {{ schedule?.DayOfWeek }}, {{ schedule?.StartDate | date:
+                'longDate' }}</p>
+            <p class="card-text"><strong>Finalización:</strong> {{ schedule?.DayOfWeek }}, {{ schedule?.FinishDate |
+                date: 'longDate' }}</p>
+        </div>
+        <p class="card-text"><strong>Asistentes:</strong> {{schedule?.Attendance}}/{{schedule?.Capacity}}</p>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <small class="text-muted">Tipo de Actividad: {{ schedule?.Type?.Name }}</small>
+        <small class="text-muted">{{ schedule?.Frequency }}</small>
+    </div>
+</div>

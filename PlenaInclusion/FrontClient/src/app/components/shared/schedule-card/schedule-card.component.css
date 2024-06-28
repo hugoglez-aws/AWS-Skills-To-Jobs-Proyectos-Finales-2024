@@ -1,0 +1,39 @@
+.card {
+    transition: transform 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.disabled-card {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.image-container {
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    max-height: 100%;
+    width: auto;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.card-footer {
+    flex-shrink: 0;
+}

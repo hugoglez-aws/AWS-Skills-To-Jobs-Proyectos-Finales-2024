@@ -1,0 +1,18 @@
+.valid-input {
+    background-color: rgb(29, 180, 29);
+}
+
+.card {
+    transition: transform 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.selected {
+    border: 2px solid rgb(31, 132, 53);
+}
